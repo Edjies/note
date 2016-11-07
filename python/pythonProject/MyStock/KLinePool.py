@@ -18,39 +18,57 @@ const_file_dir_month = 'kline/month'
 
 # get kline data
 def get_kline_day(stock_list):
-    for stock in stock_list:
-        code = stock[0]
-        if code.startswith('6'):
-            code = '0' + code
-        else:
-            code = '1' + code
+    end = True
+    try:
+        for stock in stock_list:
+            code = stock[0]
+            if code.startswith('6'):
+                code = '0' + code
+            else:
+                code = '1' + code
 
-        path = '{}/{}'.format(const_file_dir_day, stock[0])
-        if not os.path.exists(path):
-            print("开始下载 {} 的日线数据".format(stock[0]))
-            url = "http://img1.money.126.net/data/hs/kline/day/history/{}/{}.json".format('2016', code)
-            r = requests.get(url)
-            save_kline(path, r.text)
+            path = '{}/{}'.format(const_file_dir_day, stock[0])
+            if not os.path.exists(path):
+                end = False
+                time.sleep(2)
+                print("开始下载 {} 的日线数据".format(stock[0]))
+                url = "http://img1.money.126.net/data/hs/kline/day/history/{}/{}.json".format('2016', code)
+                r = requests.get(url)
+                save_kline(path, r.text)
+    except Exception as e:
+        if not end:
+            time.sleep(5)
+            get_kline_day(stock_list)
+
 
 def get_kline_week(stock_list):
-    for stock in stock_list:
-        code = stock[0]
-        if code.startswith('6'):
-            code = '0' + code
-        else:
-            code = '1' + code
-        path = '{}/{}'.format(const_file_dir_week, stock[0])
-        headers = {'Host': 'img1.money.126.net',
-                   'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0',
-                   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                   'Connection': 'keep-alive',
-                   'Cookie': '__gads=ID=ffd1eb4604430ca7:T=1477876444:S=ALNI_MbNRLnb9W9zEb2bbqijtExB7fri0g',
-                   'Upgrade-Insecure-Requests': '1'}
-        if not os.path.exists(path):
-            print("开始下载{}的周线数据".format(stock[0]))
-            url = "http://img1.money.126.net/data/hs/kline/week/history/{}/{}.json".format('2016', code)
-            r = requests.get(url, headers=headers)
-            save_kline(path, r.text)
+    end = True
+    try:
+        for stock in stock_list:
+            code = stock[0]
+            if code.startswith('6'):
+                code = '0' + code
+            else:
+                code = '1' + code
+            path = '{}/{}'.format(const_file_dir_week, stock[0])
+            headers = {'Host': 'img1.money.126.net',
+                       'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0',
+                       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                       'Connection': 'keep-alive',
+                       'Cookie': '__gads=ID=ffd1eb4604430ca7:T=1477876444:S=ALNI_MbNRLnb9W9zEb2bbqijtExB7fri0g',
+                       'Upgrade-Insecure-Requests': '1'}
+            if not os.path.exists(path):
+                end = False
+                time.sleep(2)
+                print("开始下载{}的周线数据".format(stock[0]))
+                url = "http://img1.money.126.net/data/hs/kline/week/history/{}/{}.json".format('2016', code)
+                r = requests.get(url, headers=headers)
+                save_kline(path, r.text)
+    except Exception as e:
+        if not end:
+            time.sleep(5)
+            get_kline_week(stock_list)
+
 
 
 
@@ -119,19 +137,29 @@ def upate_kline_day(node, page):
         upate_kline_day(node, page + 1)
 
 if __name__ == '__main__':
-    '''
+
     if not os.path.exists(const_file_dir_day):
-            os.makedirs(const_file_dir_day)
+        os.makedirs(const_file_dir_day)
+    if not os.path.exists(const_file_dir_week):
+        os.makedirs(const_file_dir_week)
+
     stock_list = sp.read_stock_pool(sp.stock_pool_sh_a)
     get_kline_day(stock_list)
+    get_kline_week(stock_list)
+
+    stock_list = sp.read_stock_pool(sp.stock_pool_sz_a)
+    get_kline_day(stock_list)
+    get_kline_week(stock_list)
+    '''
+        upate_kline_day('sh_a', 1)
+        upate_kline_day('sz_a', 1)
     '''
 
-    upate_kline_day('sh_a', 1)
-    upate_kline_day('sz_a', 1)
+
 
     '''
     stock_list = sp.read_stock_pool(sp.stock_pool_sh_a)
-    get_kline_week(stock_list)
+
     '''
 
 

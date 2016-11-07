@@ -28,3 +28,14 @@ for i in range(1, 9):
     data.append(i)
 print(data)
 print(data[-28:])
+
+# 相等判断
+list1 = [True, False, True]
+list2 = [True, False, True]
+print("list1 == list2 is {}".format(list1 == list2))
+print('list1.equals(list2) is {}'.format(list1 is list))
+
+# 排序
+list1 = [1, 4, 2, 3]
+print(sorted(list1))
+print(sorted(list1, reverse=True))

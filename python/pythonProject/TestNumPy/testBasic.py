@@ -11,6 +11,7 @@ print(a.ndim)
 print(a.shape)
 print(a.itemsize)
 print(a.data)
+print(len(a.flat))
 
 # 创建np数组
 nparr1 = np.array(([2,4],[1,2],[2,3]), dtype=complex)

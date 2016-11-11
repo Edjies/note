@@ -7,6 +7,8 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.support.v7.app.NotificationCompat;
 
+import java.util.ArrayList;
+
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
@@ -18,8 +20,6 @@ public class MyIntentService extends IntentService {
     private static final String  ACTION_UPLOAD = "com.hubble.notificaiton.progressbar.action.upload";
 
     private static final String EXTRA_IMG = "img";
-    private static final String EXTRA_PROGRESS = "progress";
-    private static final String EXTRA_MAX = "max";
 
     private NotificationManager mNotifyManager;
     private NotificationCompat.Builder mBuilder;
@@ -30,16 +30,24 @@ public class MyIntentService extends IntentService {
 
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setContentTitle("upload")
+                .setContentText("upload in progress")
+                .setSmallIcon(R.mipmap.ic_launcher);
+    }
+
     /**
      * 图片上传
      */
-    public static void startActionUpload(Context context, int progress, int max) {
+    public static void startActionUpload(Context context, ArrayList<String> imgs) {
         Intent intent = new Intent(context, MyIntentService.class);
         intent.setAction(ACTION_UPLOAD);
-        intent.putExtra(EXTRA_PROGRESS, progress);
-        intent.putExtra(EXTRA_MAX, max);
+        intent.putExtra(EXTRA_IMG, imgs);
         context.startService(intent);
-
     }
 
     @Override
@@ -47,34 +55,37 @@ public class MyIntentService extends IntentService {
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_UPLOAD.equals(action)) {
-                final String imgUrl = intent.getStringExtra(EXTRA_IMG);
-                final int progress = intent.getIntExtra(EXTRA_PROGRESS, 0);
-                final int max = intent.getIntExtra(EXTRA_MAX, 100);
-                handleUpload(imgUrl, progress, max);
+                final ArrayList<String> imgUrl = intent.getStringArrayListExtra(EXTRA_IMG);
+                for(int i = 0; i < imgUrl.size(); i++) {
+                    handleUpload(imgUrl.get(i), i, imgUrl.size());
+                }
+
+                handleCommit(new ArrayList<String>());
+
             }
         }
     }
 
     /**
-     * Handle action Foo in the provided background thread with the provided
-     * parameters.
+     * 上传图片
      */
-    private void handleUpload(String uri, int progress, int max) {
-        if(mNotifyManager == null) {
-            mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            mBuilder = new NotificationCompat.Builder(this);
-            mBuilder.setContentTitle("upload")
-                    .setContentText("upload in progress")
-                    .setSmallIcon(R.mipmap.ic_launcher);
-        }
-
+    private void handleUpload(String url, int progress, int max) {
         try{
             Thread.sleep(2 * 1000);
         }catch (Exception e){
-
         }
         mBuilder.setProgress(max, progress, false);
         mNotifyManager.notify(id, mBuilder.build());
+    }
 
+
+    /**
+     *  提交
+     * @param urls
+     */
+    private void handleCommit(ArrayList<String> urls) {
+        mBuilder.setProgress(0, 0, false);
+        mBuilder.setContentText("上传成功");
+        mNotifyManager.notify(id, mBuilder.build());
     }
 }

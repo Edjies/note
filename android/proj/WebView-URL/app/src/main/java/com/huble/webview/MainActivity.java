@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         webView = (WebView) findViewById(R.id.webview);
-        String url = "http://192.168.0.115:8081/teacher.html#/register";
+        String url = "http://192.168.0.114:8081/teacher.html#/register";
         //设置编码  
         webView.getSettings().setDefaultTextEncodingName("utf-8");
         //支持js  
@@ -39,11 +39,27 @@ public class MainActivity extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     String url = request.getUrl().toString();
+                    Log.i("11111", url);
                     view.loadUrl(url);
                 }
                 return super.shouldOverrideUrlLoading(view, request);
             }
 
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                return super.shouldInterceptRequest(view, request);
+            }
+
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                Log.i("222", url);
+                return super.shouldInterceptRequest(view, url);
+            }
         });
         webView.loadUrl(url);
 

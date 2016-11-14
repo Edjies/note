@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 /**
  * Demo演示：<br/>
  * <ol>
@@ -35,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
             b2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    for(int i = 0; i < 5; i++) {
-                        MyIntentService.startActionUpload(MainActivity.this, i, 5);
-                    }
+                    ArrayList<String> imgs = new ArrayList<String>();
+                    imgs.add("1");
+                    imgs.add("2");
+                    imgs.add("3");
+                    imgs.add("4");
+                        MyIntentService.startActionUpload(MainActivity.this, imgs);
                 }
             });
 

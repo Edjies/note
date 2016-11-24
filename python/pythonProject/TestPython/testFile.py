@@ -1,5 +1,6 @@
 # -*-coding:utf-8 -*-
 import os
+import sys
 # 判断文件是否存在
 if not os.path.exists('testDir'):
     os.mkdir('testDir')
@@ -55,4 +56,8 @@ for parent, dirs, files in os.walk('testDir'):  # 三个变量分别代表当前
         print(file)
 
 # 重命名
-os.rename('testDir/testFileR', 'testDir/testFile')
+#os.rename('testDir/testFileR', 'testDir/testFile')
+
+# path
+print(os.path.dirname(__file__))
+print(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, os.pardir, 'stock', 'track')))

@@ -3,11 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../MyStock/.idea/MyStock.iml" filepath="$PROJECT_DIR$/../MyStock/.idea/MyStock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../NewStock/.idea/NewStock.iml" filepath="$PROJECT_DIR$/../NewStock/.idea/NewStock.iml" />
       <module fileurl="file://E:/Stock-master/.idea/Stock-master.iml" filepath="E:/Stock-master/.idea/Stock-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TestKYX/.idea/TestKYX.iml" filepath="$PROJECT_DIR$/../TestKYX/.idea/TestKYX.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TestMatplotlib/.idea/TestMatplotlib.iml" filepath="$PROJECT_DIR$/../TestMatplotlib/.idea/TestMatplotlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TestNumPy.iml" filepath="$PROJECT_DIR$/.idea/TestNumPy.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TestOptparse/.idea/TestOptparse.iml" filepath="$PROJECT_DIR$/../TestOptparse/.idea/TestOptparse.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TestPython/.idea/TestPython.iml" filepath="$PROJECT_DIR$/../TestPython/.idea/TestPython.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TestRequests/.idea/TestRequests.iml" filepath="$PROJECT_DIR$/../TestRequests/.idea/TestRequests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TestTKinter/.idea/TestTKinter.iml" filepath="$PROJECT_DIR$/../TestTKinter/.idea/TestTKinter.iml" />
     </modules>
   </component>
 </project>

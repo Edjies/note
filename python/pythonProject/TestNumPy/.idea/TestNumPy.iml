@@ -9,6 +9,10 @@
     <orderEntry type="module" module-name="TestPython" />
     <orderEntry type="module" module-name="TestOptparse" />
     <orderEntry type="module" module-name="TestMatplotlib" />
+    <orderEntry type="module" module-name="NewStock" />
+    <orderEntry type="module" module-name="TestTKinter" />
+    <orderEntry type="module" module-name="TestRequests" />
+    <orderEntry type="module" module-name="TestKYX" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />

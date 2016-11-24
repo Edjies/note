@@ -1,0 +1,14 @@
+    1. 用usb线连接电脑和目标手机
+	2. 设置目标手机监听 tcp/ip 连接端口5555
+		$ adb tcpip 5555
+    3. 断开usb线
+    4. 找到目标手机的ip地址。 一般在 设置->关于手机->状态->ip地址
+    5. 通过ip地址连接至目标手机
+		$ adb connect <device_ip_address>
+	6. 确认电脑和目标手机相连
+		$ adb devices
+		List of devices attached
+		device_ip_address:5555 device
+
+	注1： 如果目标手机失去连接， 确保主机和手机在用一个wifi下，  重新执行连接步骤。 必要情况下，重置adb,  $adb kill-server
+	注2： 注意防火墙的阻止。

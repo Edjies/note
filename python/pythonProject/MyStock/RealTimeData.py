@@ -29,3 +29,5 @@ def query_report(stock_pool):
     print("%-10s %8s %8s %8s" % ('code', 'price', 'chg', 'chg_per'))
     for report in reports:
         print("%-10s %8.2f %8.2f %8.2f" % (report[0], report[1], report[2], report[3]))
+
+query_report([['002222', 'fjkj']])

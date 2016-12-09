@@ -39,3 +39,14 @@ print('list1.equals(list2) is {}'.format(list1 is list))
 list1 = [1, 4, 2, 3]
 print(sorted(list1))
 print(sorted(list1, reverse=True))
+
+
+# subjet (slice, sort, equal, create)
+def testSlice():
+    list1 = [1, 2, 3, 4]
+    print(list1[:-1])
+
+
+
+
+testSlice()

@@ -2,6 +2,7 @@
 import requests
 import json
 import os
+import time
 __author__ = 'hubble'
 sina_node_sh_a = 'sh_a'
 sina_node_sz_a = 'sz_a'
@@ -14,11 +15,15 @@ stock_list = []
 
 # 获取股票池数据, 该方法依赖于新浪股票API接口
 def get_code_group(node, page):
+    time.sleep(5)
     print('start load {} page'.format(str(page)))
     url = "http://gu.sina.cn/hq/api/openapi.php/Wap_Market_Center.getHQNodeData?" \
           "num=40&sort=changepercent&asc=0&_s_r_a=init&node={node}&page={page}&dpc=1" \
           .format(node=node, page=page)
-    r = requests.get(url)
+
+    session = requests.Session()
+    session.trust_env = False
+    r = session.get(url)
     # 解析数据
     jsonObj = json.loads(r.text)
     for item in jsonObj['result']['data']['data']:
@@ -63,8 +68,10 @@ def filter(l_stock_list):
             r_stock_list.append(stock)
     print(r_stock_list)
     return r_stock_list
-# write_stock_pool(stock_pool_sh_a, get_code_group(sina_node_sh_a, 1))
-# write_stock_pool(stock_pool_sz_a, get_code_group(sina_node_sz_a, 1))
+
+
+write_stock_pool(stock_pool_sh_a, get_code_group(sina_node_sh_a, 1))
+write_stock_pool(stock_pool_sz_a, get_code_group(sina_node_sz_a, 1))
 # read_stock_pool(stock_pool_sh_a)
 # write_stock_pool(stock_pool_sh_a, filter(read_stock_pool(stock_pool_sh_a)))
 

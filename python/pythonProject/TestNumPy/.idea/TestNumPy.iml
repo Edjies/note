@@ -13,6 +13,7 @@
     <orderEntry type="module" module-name="TestTKinter" />
     <orderEntry type="module" module-name="TestRequests" />
     <orderEntry type="module" module-name="TestKYX" />
+    <orderEntry type="module" module-name="TimeLineServer" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />

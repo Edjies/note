@@ -84,11 +84,13 @@ def read_kline_day(stock_code):
     f.close()
     return text
 
+
 def read_kline(dir, stock_code):
     f = open('{}/{}'.format(dir, stock_code), 'r', encoding='utf-8')
     text = f.readline()
     f.close()
     return text
+
 
 def upate_kline_day(node, page):
 

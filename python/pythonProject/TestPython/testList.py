@@ -47,6 +47,12 @@ def testSlice():
     print(list1[:-1])
 
 
+# iterator with index
+def iterator_with_index():
+    l = [[1, 2, 3], [1, 2, 3, 4, 5], [1, 2, 3, 4], [1, 2, 3, 4, 5, 6]]
+    for index, item in enumerate(l):
+        l[index] = item[:3]
+    print(l)
 
 
 testSlice()

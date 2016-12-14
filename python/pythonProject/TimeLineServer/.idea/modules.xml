@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../MyStock/.idea/MyStock.iml" filepath="$PROJECT_DIR$/../MyStock/.idea/MyStock.iml" />
       <module fileurl="file://$PROJECT_DIR$/../NewStock/.idea/NewStock.iml" filepath="$PROJECT_DIR$/../NewStock/.idea/NewStock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TestMatplotlib/.idea/TestMatplotlib.iml" filepath="$PROJECT_DIR$/../TestMatplotlib/.idea/TestMatplotlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TestNumPy/.idea/TestNumPy.iml" filepath="$PROJECT_DIR$/../TestNumPy/.idea/TestNumPy.iml" />
       <module fileurl="file://$PROJECT_DIR$/../TestPython/.idea/TestPython.iml" filepath="$PROJECT_DIR$/../TestPython/.idea/TestPython.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TimeLineServer.iml" filepath="$PROJECT_DIR$/.idea/TimeLineServer.iml" />

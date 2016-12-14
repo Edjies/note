@@ -14,6 +14,7 @@ path_kline_week = 'data/kline/week'
 path_kline_month = 'data/kline/month'
 path_stock = 'data/stock'
 path_kline = 'data/kline'
+path_track = 'data/track'
 
 
 class Stock(object):

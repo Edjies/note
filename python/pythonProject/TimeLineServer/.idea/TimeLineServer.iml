@@ -9,6 +9,7 @@
     <orderEntry type="module" module-name="NewStock" />
     <orderEntry type="module" module-name="pythonBasis" />
     <orderEntry type="module" module-name="TestNumPy" />
+    <orderEntry type="module" module-name="TestMatplotlib" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />

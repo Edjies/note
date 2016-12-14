@@ -74,7 +74,7 @@ def get_kline_from_tencent(stock_list, stock_type):
             if not os.path.exists(path):
                 end = False
                 #time.sleep(100)
-                print("开始下载 {} 的日线数据".format(stock.stock_code))
+                print("开始下载 {} 的数据".format(stock.stock_code))
                 url = "http://183.57.48.75/ifzqgtimg/appstock/app/fqkline/get?p=1&param={code},{type},,,640,qfq"\
                     .format(code=code, type=stock_type)
                 print(url)
@@ -90,6 +90,8 @@ def get_kline_from_tencent(stock_list, stock_type):
                     else:
                         data = json_obj['data'][code].get('{}'.format(stock_type))
                     print(data)
+                    for index, item in enumerate(data):
+                        data[index] = item[0:6]
                     save_kline(path, json.dumps(data))
     except Exception as e:
         if not end:

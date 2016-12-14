@@ -9,24 +9,41 @@ from StockIO import *
 StockIndicator used for confirm price movement
 """
 
+def kd2(kline, n_rsv, n_k, n_d):
+    rsv = [0] * kline.shape[0]
+    k = [0] * len(rsv)
+    d = [0] * len(rsv)
+    open = kline[:, 1].astype(np.float)
+    close = kline[:, 2].astype(np.float)
+    high = kline[:, 3].astype(np.float)
+    low = kline[:, 4].astype(np.float)
 
-def kd(kline):
-    """
+    if len(rsv) < n_rsv:
+        return -1, -1
 
-    :param kline: nparray<date, open, close, high, low, volume>
-    :return:
-    """
-    # rsv
-    # k = (price - L5)/(H5 - L5)
-    # d = 100 * ((K1 + k2 + k3) / 3)
-    # return
-    try:
-        k, d = talib.STOCH(kline[:, 3].astype(np.double), kline[:, 4].astype(np.double), kline[:, 2].astype(np.double),
-                       fastk_period=9, slowk_period=3, slowk_matype=0, slowd_period=3, slowd_matype=0)
-    #k, d = talib.STOCHF(kline[:, 3].astype(np.double), kline[:, 4].astype(np.double), kline[:, 2].astype(np.double), fastk_period=9, fastd_period=3, fastd_matype=0)
-    except Exception as e:
-        return [0, 0], [0, 0]
+    for i in range(0, close.shape[0]):
+        if i < n_rsv - 1:
+            rsv[i] = 0
+        else:
+            start = i - n_rsv + 1
+            end = i + 1
+            rsv[i] = (close[i] - np.min(low[start:end])) / (np.max(high[start:end]) - np.min(low[start:end])) * 100
+    #print(rsv)
+
+    for index, i in enumerate(rsv):
+        if index != 0:
+            k[index] = 1/3.0*rsv[index] + 2/3.0*k[index-1]    # 计算平滑移动平均线
+
+    for index, i in enumerate(k):
+        if index != 0:
+            d[index] = 1/3.0*k[index] + 2/3.0*d[index-1]      # 计算平滑移动平均线
+
     return k, d
+
+def t_sma():
+    data = np.array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0])
+    print(talib.SMA(data, timeperiod=3))
+
 
 
 def findX(stock_list):
@@ -36,9 +53,10 @@ def findX(stock_list):
     """
     result = []
     for stock in stock_list:
-        k, d = kd(get_kline(stock.stock_code, kline_type_day))
-        if d[-2] > k[-2] and k[-1] > d[-1]:
-            result.append(stock)
+        k, d = kd2(get_kline(stock.stock_code, kline_type_week), 9, 3, 3)
+        if k != -1 and d != -1 and len(k) > 7:
+            if d[-4] > k[-4] and k[-2] > d[-2]:
+                result.append(stock)
     return result
 
 
@@ -75,6 +93,8 @@ def query_report(stock_pool):
         print("%-10s %8.2f %8.2f %8.2f" % (report[0], report[1], report[2], report[3]))
 
 
-stocks = findX(get_stock('sza'))
-print(stocks)
-query_report(stocks[20:])
+#k, d = kd2(get_kline("601611", kline_type_day), 9, 3, 3)
+#k1, d1 = kd(get_kline("000005", kline_type_day))
+#print(k[:])
+#print(d[:])
+print(findX(get_stock('sza')))

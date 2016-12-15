@@ -10,6 +10,7 @@ def get_stock(name):
     :param name: pool_name
     :return: list<Stock>
     """
+    print('get_stock({})'.format(name))
     l_stock_list = []
     if not os.path.exists('{}/{}'.format(path_stock, name)):
         return []
@@ -18,7 +19,6 @@ def get_stock(name):
             stock = stock.strip('\n').split(',')
             if stock != '':
                 l_stock_list.append(Stock(stock[0], stock[1]))
-    print("get_local_pool({}): {}".format(name, l_stock_list))
     return l_stock_list
 
 

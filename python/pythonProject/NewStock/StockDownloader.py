@@ -23,7 +23,7 @@ def update_stock_kline(source, kline_type):
     """
     if source == source_tencent:
         get_kline_from_tencent(get_stock('sha'), kline_type)
-        get_kline_from_tencent(get_stock('sza'), kline_type)
+        #get_kline_from_tencent(get_stock('sza'), kline_type)
 
 
 def get_stock_pool_from_sina(node, page):
@@ -146,4 +146,4 @@ if __name__ == '__main__':
 
     #get_stock_pool(source_sina)
     #update_stock_kline(source_tencent, kline_type_day)
-    update_stock_kline(source_tencent, kline_type_week)
+    update_stock_kline(source_tencent, kline_type_day)

@@ -9,7 +9,7 @@ from StockIO import *
 StockIndicator used for confirm price movement
 """
 
-def kd2(kline, n_rsv, n_k, n_d):
+def kd(kline, n_rsv, n_k, n_d):
     rsv = [0] * kline.shape[0]
     k = [0] * len(rsv)
     d = [0] * len(rsv)
@@ -28,7 +28,6 @@ def kd2(kline, n_rsv, n_k, n_d):
             start = i - n_rsv + 1
             end = i + 1
             rsv[i] = (close[i] - np.min(low[start:end])) / (np.max(high[start:end]) - np.min(low[start:end])) * 100
-    #print(rsv)
 
     for index, i in enumerate(rsv):
         if index != 0:
@@ -40,22 +39,35 @@ def kd2(kline, n_rsv, n_k, n_d):
 
     return k, d
 
+
+def macd(kline, fastperiod=12, slowperiod=26, signalperiod=9):
+    """
+    :param kline:
+    :return:macd   (nparray)
+            macdsignal   (nparray)
+            macdhist    (nparray)
+    """
+    close = kline[:, 2].astype(np.float)
+    return talib.MACD(close, fastperiod=fastperiod, slowperiod=slowperiod, signalperiod=signalperiod)
+
+
 def t_sma():
     data = np.array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0])
     print(talib.SMA(data, timeperiod=3))
 
 
-
-def findX(stock_list):
+def findX(stock_list, kline_type=kline_type_day):
     """
     :param stock_list: list<Stock>
+    :param kline_type:
     :return: list<Stock>
     """
+    print('findX(stock_list)')
     result = []
     for stock in stock_list:
-        k, d = kd2(get_kline(stock.stock_code, kline_type_week), 9, 3, 3)
+        k, d = kd(get_kline(stock.stock_code, kline_type), 9, 3, 3)
         if k != -1 and d != -1 and len(k) > 7:
-            if d[-4] > k[-4] and k[-2] > d[-2]:
+            if d[-3] > k[-3] and k[-2] > d[-2]:
                 result.append(stock)
     return result
 
@@ -97,4 +109,8 @@ def query_report(stock_pool):
 #k1, d1 = kd(get_kline("000005", kline_type_day))
 #print(k[:])
 #print(d[:])
-print(findX(get_stock('sza')))
+# macd,macdsignal,macdhist = macd(get_kline('601611', kline_type_day))
+# print(macdhist*2)
+# print(macd)
+# print(macdsignal)
+

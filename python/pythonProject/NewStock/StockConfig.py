@@ -29,3 +29,6 @@ class Stock(object):
     def __repr__(self):
         return repr((self.stock_code, self.stock_name))
 
+    def __eq__(self, other):
+        return self.stock_code == other.stock_code
+

@@ -15,7 +15,7 @@ def get_stock_pool(source):
         write_stock_pool('sza', get_stock_pool_from_sina(sina_node_sz_a, 1))
 
 
-def update_stock_kline(source, kline_type):
+def download_stock_kline(source, kline_type):
     """
     数据维护之获取K线数据
     :param source:
@@ -23,7 +23,7 @@ def update_stock_kline(source, kline_type):
     """
     if source == source_tencent:
         get_kline_from_tencent(get_stock('sha'), kline_type)
-        #get_kline_from_tencent(get_stock('sza'), kline_type)
+        get_kline_from_tencent(get_stock('sza'), kline_type)
 
 
 def get_stock_pool_from_sina(node, page):
@@ -100,6 +100,52 @@ def get_kline_from_tencent(stock_list, stock_type):
             get_kline_from_tencent(stock_list, stock_type)
 
 
+def upate_kline_day(node, page):
+    """
+    :param node:
+    :param page:
+    :return:
+    """
+    url = "http://gu.sina.cn/hq/api/openapi.php/Wap_Market_Center.getHQNodeData?" \
+          "num=40&sort=changepercent&asc=0&_s_r_a=init&node={node}&page={page}&dpc=1" \
+        .format(node=node, page=page)
+
+    session = requests.Session()
+    session.trust_env = False
+    r = session.get(url)
+    jsonObj = json.loads(r.text)
+    date = jsonObj['result']['data']['status']['date']
+    for item in jsonObj['result']['data']['data']:
+        # 最新数据
+        new_item = [date, str(item['open']), str(item['trade']), str(item['high']), str(item['low']), str(item['volume'])]
+        # 旧数据
+        code = item['code']
+        print('正在更新{}'.format(code))
+        try:
+            with open('{}/{}'.format(path_kline_day, code), 'r', encoding='utf-8') as f:
+                text = f.readline()
+                old_kline = json.loads(text)
+                last_item = old_kline[-1]
+                if last_item[0] == new_item[0]:
+                    print('update', new_item, last_item)
+                    old_kline[-1] = new_item
+                    json_str = json.dumps(old_kline)  # 生成
+                    save_kline('{}/{}'.format(path_kline_day, code), json_str)
+                else:
+                    print('append', new_item, last_item)
+                    old_kline.append(new_item)
+                    json_str = json.dumps(old_kline)  # 生成
+                    save_kline('{}/{}'.format(path_kline_day, code), json_str)
+                    # data['data'].append()
+        except EnvironmentError  as e:
+            print(e)
+
+
+    size = jsonObj['result']['data']['status']['pagetatol']
+    if page < size:
+        upate_kline_day(node, page + 1)
+
+
 def save_kline(path, text):
     with open(path, 'w', encoding='utf-8') as f:
         f.write(text)
@@ -146,4 +192,5 @@ if __name__ == '__main__':
 
     #get_stock_pool(source_sina)
     #update_stock_kline(source_tencent, kline_type_day)
-    update_stock_kline(source_tencent, kline_type_day)
+    download_stock_kline(source_tencent, kline_type_day)
+    #upate_kline_day(sina_node_sh_a, 1)

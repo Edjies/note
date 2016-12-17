@@ -59,3 +59,19 @@ def macd(kline, fastperiod=12, slowperiod=26, signalperiod=9):
     return talib.MACD(close, fastperiod=fastperiod, slowperiod=slowperiod, signalperiod=signalperiod)
 
 
+def sma(kline, *timeperiod):
+    """
+    :param kline:
+    :param timeperiod:
+    :return:
+    """
+    close = kline[:, 2].astype(np.float)
+    return [talib.SMA(close, timeperiod=i) for i in timeperiod]
+
+
+if __name__ == '__main__':
+    sma5, sma10 = sma(get_kline('601611', kline_type=kline_type_day), 5, 10)
+    print(sma5)
+    print(sma10)
+
+

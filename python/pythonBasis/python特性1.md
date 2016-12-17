@@ -106,6 +106,8 @@
 	# 列表生成器
 	a = [i**2 for i in range(10) if i > 0]
 	print(a)  # a是一个列表
+	a = tuple(i for i in range(10))
+	print(a)  # a是一个元组
 	a = (i**2 for i in range(10) if i > 0)
 	print(a)  # a是一个生成器
 

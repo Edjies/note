@@ -69,6 +69,16 @@ def sma(kline, *timeperiod):
     return [talib.SMA(close, timeperiod=i) for i in timeperiod]
 
 
+def ema(kline, *timeperiod):
+    """
+    :param kline:
+    :param timeperiod:
+    :return:
+    """
+    close = kline[:, 2].astype(np.float)
+    return [talib.EMA(close, timeperiod=i) for i in timeperiod]
+
+
 if __name__ == '__main__':
     sma5, sma10 = sma(get_kline('601611', kline_type=kline_type_day), 5, 10)
     print(sma5)

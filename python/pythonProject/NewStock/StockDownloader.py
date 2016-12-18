@@ -34,7 +34,7 @@ def get_stock_pool_from_sina(node, page):
     :return:
     """
     stock_list = []
-    time.sleep(5)
+    time.sleep(1)
     print('start load {} page'.format(str(page)))
     url = "http://gu.sina.cn/hq/api/openapi.php/Wap_Market_Center.getHQNodeData?" \
           "num=40&sort=changepercent&asc=0&_s_r_a=init&node={node}&page={page}&dpc=1" \
@@ -192,5 +192,7 @@ if __name__ == '__main__':
 
     #get_stock_pool(source_sina)
     #update_stock_kline(source_tencent, kline_type_day)
-    download_stock_kline(source_tencent, kline_type_day)
+    #download_stock_kline(source_tencent, kline_type_day)
+    #download_stock_kline(source_tencent, kline_type_week)
+    download_stock_kline(source_tencent, kline_type_month)
     #upate_kline_day(sina_node_sh_a, 1)

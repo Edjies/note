@@ -16,8 +16,9 @@ def find_kdj_x(stock_pool, kline_type, n_rsv=9):
     for stock in stock_list:
         k, d = StockIndicator.kd(StockIO.get_kline(stock.stock_code, kline_type), n_rsv)
         if k.shape[0] > n_rsv:
-            if d[-3] > k[-3] and k[-2] > d[-2] and d[-2] > d[-3] and k[-2] > k[-3]:
-                result.append(stock)
+            if d[-2] > k[-2] and k[-1] > d[-1] and d[-1] > d[-2] and k[-1] > k[-2]:
+                if k[-1] < 50:
+                    result.append(stock)
     return result
 
 

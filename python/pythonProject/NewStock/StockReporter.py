@@ -4,6 +4,8 @@ import json
 
 
 def query_report(stock_list):
+    if(len(stock_list) == 0):
+        return
     reports = []
     codes = ''
     for stock in stock_list:

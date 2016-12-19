@@ -194,5 +194,5 @@ if __name__ == '__main__':
     #update_stock_kline(source_tencent, kline_type_day)
     #download_stock_kline(source_tencent, kline_type_day)
     #download_stock_kline(source_tencent, kline_type_week)
-    download_stock_kline(source_tencent, kline_type_month)
-    #upate_kline_day(sina_node_sh_a, 1)
+    #download_stock_kline(source_tencent, kline_type_month)
+    upate_kline_day(sina_node_sz_a, 1)

@@ -18,7 +18,7 @@ path_track = 'data/track'
 
 
 class Stock(object):
-    __slots__ = ['stock_code', 'stock_name']
+    __slots__ = ['stock_code', 'stock_name', 'stock_updown']
 
     def __init__(self, stock_code, stock_name):
         self.stock_code = stock_code

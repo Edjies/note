@@ -22,6 +22,13 @@ def get_stock(name):
     return l_stock_list
 
 
+def save_stock(stock_pool_name, stock_list):
+    path = '{root}/{name}'.format(root=path_stock, name=stock_pool_name)
+    with open(path, mode='w', encoding='utf-8') as f:
+        for stock in stock_list:
+            f.write("{},{}\n".format(stock.stock_code, stock.stock_name))
+
+
 def get_kline(stock_code, kline_type):
     """
     :param stock_code:

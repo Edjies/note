@@ -1,0 +1,3 @@
+android handler 用于线程间通信。
+
+Handler， Looper， Message

@@ -20,12 +20,22 @@ import numpy as np
 # print(stock_result)
 # StockReporter.query_report(stock_result)
 
-
-@find_sma_up(StockConfig.kline_type_week, x_position=-1)
+# first step : filter stock and select target stock
+@find_sma_up(StockConfig.kline_type_day, x_position=-1)
 @find_kdj_jx(StockConfig.kline_type_week, x_position=-1, k_max=60)
 def filter_stock(stock_list):
+    """
+    strategy:
+    :param stock_list: buy in Tuesday, Monday for confirm up trend, Friday must quits if profited.
+    :return:
+    """
     return stock_list
 
 stock_list = filter_stock(StockIO.get_stock('sha'))
 print(stock_list)
 StockReporter.query_report(stock_list)
+
+# second step: track stock and select buy point
+
+
+# third step: track stock and select sell point

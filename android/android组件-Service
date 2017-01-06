@@ -1,0 +1,15 @@
+1. Service 的作用
+   用于执行后台任务。 如文件I/O, 数据存储， 后台下载， 音乐播放等。 比起普通线程任务， Service不会造成内存泄露， 更稳定。 并且将耗时操作放入Service能提高UI性能。
+
+2. Service的生命周期活动
+   onCreate()    
+   onBind()  绑定模式下 通过该方法返回给调用者一个IBinder的代理， 用于与Service通信。
+   onStartCommand() 启动模式下， 该方法接受调用者的意图， 并执行后台任务。 
+   onDestroy()
+
+3. Service的停止
+   绑定模式下， 当没有一个Activity与Service绑定时 unbinadService()， Service结束
+   启动模式下， Service不会自动停止， 需要Service调用 stopSelf() 或者调用者调用 stopService方法
+
+
+

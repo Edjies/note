@@ -1,0 +1,87 @@
+TCP协议：
+TCP 概述
+    TCP 提供一种面向连接的、可靠地、比特流传输服务。
+        面向连接
+	    是指两个终端在使用tcp协议时必须先建立连接，然后才能交换数据。
+	可靠性
+	    a. 数据切分成特定大小的块.
+	    b. 通过 定时器 + 确认 + 重复发送 的方式 确保所有的数据块都能到达.
+	    c. 校验每个收到的块， 防止噪音干扰.
+	    d. 过滤掉重复发送的数据
+	    e. 重新排序所收到的数据， 确保 发送和接收一致。
+	比特流
+	    a. tcp不会在数据中插入任何标记， 并且不会对数据的内容做任何解释， 无论是文本，图片还是其它等 都是二进制数据流。
+	    b. 一端将比特流放入tcp， 相同的比特流将出现在tcp另一端。 与放入和接收的方式无关。（如先放入20btyes, 30bytes, 40bytes, 还是 3次 30bytes）
+	    
+    
+TCP 协议结构
+       struct:
+         src port(16),
+         dest port(16),
+	 seq num(32),
+	 ack num(32),
+	 data offset(4),
+	 reserved(3),
+	 ECN(3),
+	 ctrl bits(6),
+	 window(16),
+	 checksum(16),
+	 urgent pointer(16),
+	 Options(..)
+	 Data(..)
+    
+TCP 握手协议
+      连接：SYN -> SYN/ACK -> ACK
+      中止：FIN -> ACK -> FIN -> ACK
+TCP 流控制
+      
+	
+TCP
+
+项目经验
+
+交易模块
+	安全， 快速， 稳定
+项目描述：
+使用ViewPager + Fragment + ViewStub 实现个股报价UI的开发
+
+使用Android Canvas 和 Android Gestrue实现 K线图 和 资金流向图 等自定义控件。
+
+使用 Volley框架 进行http网络通信， 以减少重复请求 和 缓存。
+
+利用 Socket 和 Service 实现股票消息推送和 股吧讨论功能。
+
+
+
+调研android 开发过程中的 安全问题。
+
+调研android 开发过程中处理 程序内存优化 和 界面优化的相关知识。
+
+调研处理android多屏幕适配方面的知识。
+
+个人体系
+精通java语言， 能熟练的进行基于的 java 多线程、HTTP， Socket等方面的开发工作。
+
+深入理解Android 框架体系， 如 View事件传递及处理， 线程间通信， Intent机制， UI绘制等的原理。
+
+精于android UI编程， 分辨率适配， UI布局， 自定义控件， 动画等。
+
+良好的责任心，一个把握产品细节的开发者。
+
+熟悉常用的设计模式， 具有良好的面向对象的开发思想。
+
+熟悉常用的数据结构和算法， 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

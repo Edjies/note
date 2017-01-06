@@ -1,0 +1,73 @@
+**MarkDown 语法说明**
+
+<span id='top'>top</span>
+
+1. **标题 用 #~###### 来代表 h1 ~ h6**
+# 	这是一个`<h1>` 标签
+### 	这是一个`<h3>` 标签 
+
+2. **强调 用 `__ __` 或者 `** **` 代表宽体， 用 `_ _` 或者 `* *`代表斜体, 用 `~~ ~~`代表删除线** 
+
+_斜体强调_
+__宽体强调__
+~~delete~~
+
+3. **列表 用 `*` 代表无序列表， 用 '<数字>.' 代表有序列表**
+
+* Item1
+* Item2
+* Item3
+
+1. Item1
+2. Item2
+3. Item3
+
+4. **块引用**
+
+   引用自：
+   > abcdefg </br>
+   > abcdefg
+
+5. **图片的表示格式为 `![Alt Text](url)`**
+
+   ![示例图片](http://hiphotos.baidu.com/%B3%F5%BC%B6%BE%D1%BB%F7%CA%D6/pic/item/929b56443840bfc6b3b7dc64.jpg)
+
+6. **链接的表示格式为 `[Alt Text](url)`**
+   [百度](http://www.baidu.com)
+
+7. **行内代码用 ``表示**
+
+   这是一个`<h1>`标签
+
+8. **语法高亮**
+   ```javascript
+   function fancyAlert(arg) {
+      if(arg) {
+        $.facebox({div:'#foo'})
+      }
+   }
+   ```
+
+9. **表格**
+
+标题1 | 标题2 | 标题3
+- | - | -
+cell1 | cell2 | cell3
+
+
+标题1 | 标题2 | 标题3
+- | - | -
+Content from cell 1 | Content from cell 2 | cell3
+Content in the first column | Content in the second column | cell3
+
+10. **页内跳转**
+    [top](#top)
+
+  
+
+   
+
+
+
+
+

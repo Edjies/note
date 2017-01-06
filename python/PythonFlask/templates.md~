@@ -1,0 +1,14 @@
+### 从Jinja2 模板开始
+
+Flask的render_template(template_name, **kw) 函数使用Jinja2引擎渲染页面， 模板默认存储在 templates文件夹中
+
+#### 模板中的变量和方法
+* 模板通过 {{ <value>  }} 使用变量
+* 第一种变量是通过render_template()函数传入
+* 一部分flask默认提供的全局变量和方法，包括：
+对象 | 说明 | 备注
+-|-|-
+config|flask配置对象|flask.config
+
+
+

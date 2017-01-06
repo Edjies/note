@@ -2,6 +2,7 @@
 import StockIndicator
 import StockIO
 import numpy as np
+import StockFilter
 """
 通过修饰器提供过滤
 """
@@ -40,6 +41,22 @@ def find_sma_up(kline_type, x_position=-1, timepeirod=5):
         return f_wrapper
     return f_decorator
 
+
+def f_kdj(kline_type, position=-1, k_min=0, k_max=20):
+    def f_decorator(func):
+        def f_wrapper(stock_list):
+            stock_list = func(stock_list)
+            return [stock for stock in stock_list if StockFilter.kdj_is_in(stock, kline_type, position=position, k_min=k_min, k_max=k_max)]
+        return f_wrapper
+    return f_decorator
+
+
+def f_sma(kline_type, position=-1):
+    def f_decorator(func):
+        def f_wrapper(stock_list):
+            return True
+        return f_wrapper
+    return f_decorator
 
 def find_macd_jx(stock_pool, kline_type, x_position=-1):
     """

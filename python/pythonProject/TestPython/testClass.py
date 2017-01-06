@@ -26,6 +26,7 @@ a1 = ClassA(field1='1', field2='2')
 a1.static_item_a = 'ClassA1'
 
 a2 = ClassA(field1='3', field2='4')
+a3 = ClassA(a=1, b=2)
 
 print(ClassA.static_item_a, a2.static_item_a)
 print(a1.field1, a2.field1)

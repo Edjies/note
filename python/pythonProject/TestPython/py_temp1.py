@@ -9,3 +9,15 @@ def test_pass():
         pass
 
 test_pass()
+
+
+def testCompare(a, b, c):
+    if a > b > c or c > b > a:
+        print('{}, {}, {} is sorted'.format(a, b, c))
+    else:
+        print('{}, {}, {} is not sorted'.format(a, b, c))
+
+
+
+testCompare(1, 2 ,3)
+testCompare(2, 1, 3)

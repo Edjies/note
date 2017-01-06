@@ -112,6 +112,15 @@ def is_sx(fast, slow, x_position, about=False):
     return False
 
 
+def kdj_is_in(stock, kline_type, position = 0, k_min=0, k_max=30):
+    kline = StockIO.get_kline(stock.stock_code, kline_type)
+    k, d = StockIndicator.kd(StockIO.get_kline(stock.stock_code, kline_type), 9)
+    if k.shape[0] > abs(position) + 1:
+        if k_max > k[position] > k[position - 1] > k_min:
+            return True
+    return False
+
+
 def intersection(l1, l2):
     """
     取两个列表的交集

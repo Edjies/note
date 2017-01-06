@@ -1,0 +1,15 @@
+Intent用于调用android组件， 如启动 activity， 启动 service， 发送广播等。
+
+当Intent指定了组件的名称时，它就是一个显式的意图， 否则它就是一个隐式的意图。 启动Service时必须使用显式意图。
+
+当Intent为隐式意图时， android Framewrok 通过 Intent的几个属性 （action， category， data）来确定具体启动那个Activity.
+
+action 代表 Intent 想要执行的动作。每个隐式Intent有且只有一个action
+category 为选择组件的一些附加条件， 只有当组件满足category的附加条件时， 组件才能被匹配。
+data 数据有几种类型。 如 url, type, extra 等。 每个action都有对应的其需要处理的数据。 url表示地址， 如编辑文本的action, 则需要文本的地址。
+     type表示 url数据的类型。 extra则为键值对数据。
+
+
+Intent的过滤机制
+	在Manifest文件声明中， 一个activity声明的Intent Filter 必须满足：
+	  1. Intent的action能在 Intent

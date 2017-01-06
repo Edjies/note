@@ -1,0 +1,64 @@
+
+关于属性动画的总结：
+	可以对动画进行的操作：
+		1.定义多个动画执行顺序
+			对于AnimationSet可定义各个动画的执行顺序
+			代码：
+			ObjectAnimator anim1, anim2, anim3, anim4;
+			// 初始化
+			// ...
+
+			// 定义动画的执行顺序
+			AnimationSet set = new AnimationSet();
+			set.play(anim1).before(anim2);
+			set.play(anim2).with(anim3);
+			set.play(anim4).after(anim3);
+			
+			// 开始动画
+			set.start();
+			
+
+			
+			
+		2.动画属性混合(同时改变多个属性)
+			代码：
+			PropertyValueHolder ph1,ph2,ph3;
+			// 初始化...
+			// ...
+			// 创建动画
+			ObjectAnimator animator = ObjectAnimator.ofProertyValuesHolder(object, ph1, ph2, ph3);
+			// 动画的其它设置
+			// ...
+			// 开始动画
+			animator.start();	
+			
+		3.自定义插值器
+			value = T(time),  0 <= value <= 1, 0<= time <= 1, 关于时间和插值变化的关系， value代表属性值的百分比
+			基于时间的动画插值：
+				TimeInterpolator:
+				float getInterpolation(float input);
+				其中， input表示动画的时间点，返回值为 动画值， 注意， 他们的取值范围都为0,1, 需要根据实际值进行转变。
+			
+		4.自定义动画属性
+			Evaluator
+
+		5.动画监听
+			一是 动画的 开始， 继续， 暂停，结束， 重复等的监听
+			二是 动画 更新 的监听
+			
+		7.手动显示动画的某一帧， 主要用于基于事件的动画
+			
+			
+		8.布局动画
+			一是通过标准android API创建布局动画
+			二是通过对 LayoutParams参数 进行动画操作
+
+		9.ObjectAnimator 和 ValueAnimator
+			ObjectAnimator 的动画属性 应该有 getter 和 setter方法。
+		
+		
+		10. 路径动画
+			
+
+		
+	 

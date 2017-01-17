@@ -79,6 +79,8 @@ def ema(kline, *timeperiod):
     return [talib.EMA(close, timeperiod=i) for i in timeperiod]
 
 
+
+
 if __name__ == '__main__':
     sma5, sma10 = sma(get_kline('601611', kline_type=kline_type_day), 5, 10)
     print(sma5)
